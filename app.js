@@ -1,31 +1,55 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Sign Up Form</title>
-	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" title="no title" charset="utf-8">
-</head>
-<body>
+//Problem hints are shown even when from is valid
+//solution hide and show them appropriate times
+var $password = $("#password");
+var $confirmPassword = $("#confirm_password");
+//hide hints 
+$("form span").hide();
 
-	<form action="#" method="post">
-		<p>
-			<label for="username">Username</label>
-			<input id="username" name="username" type="text">
-		</p>
-		<p>
-			<label for="password">Password</label>
-			<input id="password" name="password" type="password">
-			<span>Enter a password longer than 8 characters</span>
-		</p>
-		<p>
-			<label for="confirm_password">Confirm Password</label>
-			<input id="confirm_password" name="confirm_password" type="password">
-			<span>Please confirm your password</span>
-		</p>
-		<p>
-			<input type="submit" value="SUBMIT" id="submit">
-		</p>
-	</form>
-	<script src="http://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
-	<script src="js/app.js" type="text/javascript" charset="utf-8"></script>
-</body>
-</html>
+function isPasswordValid(){
+  return $password.val().length > 8;
+}
+
+function arePasswordMatching(){
+  return $password.val() === $confirmPassword.val();
+}
+
+function canSubmit(){
+  return isPasswordValid() && arePasswordMatching();
+  }
+
+function passwordEvent(){
+  //find out if password is valid
+  if(isPasswordValid()){
+   //hide hint if valid
+   $password.next().hide(); 
+  }else{
+   //else show hint
+   $password.next().show();
+  }
+}
+
+function confirmPasswordEvent(){
+  //find out if password and confirmation match
+  if(arePasswordMatching()){
+    //hide hint if match
+    $confirmPassword.next().hide();
+  }else{
+    //else show hint 
+    $confirmPassword.next().show();
+  }  
+}
+
+function enableSubmitEvent(){
+  !
+  $("#submit").prop("disabled",!canSubmit())
+}
+
+//when event happens on password input
+$password.focus(passwordEvent).keyup(passwordEvent).keyup(confirmPasswordEvent).keyup(enableSubmitEvent);
+
+
+//when event happens on confirmation
+$confirmPassword.focus(confirmPasswordEvent).keyup(confirmPasswordEvent).keyup(enableSubmitEvent);
+
+enableSubmitEvent();
+  
