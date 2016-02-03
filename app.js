@@ -1,36 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sign Up Form</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" title="no title" charset="utf-8">
+</head>
+<body>
 
-var $password = $("#password");
-var $confirmPassword = $("#confirm_password")
-$("form span").hide();
-
-function isPasswordValid(){
-	return $password.val().length > 8;
-}
-
-function arePasswordsMatching(){
-	return $password.val() === $confirmPassword.val();
-}
-
-function passwordEvent(){
-	if(isPasswordValid()){
-		$password.next().hide();
-	}else{
-		$password.next().show();
-	}
-}
-
-function confirmPasswordEvent(){
-	if(arePasswordsMatching()){
-		$confirmPassword.next().hide();
-	}else{
-		$confirmPassword.next().show();
-	}
-
-}
-
-
-$password.focus(passwordEvent).keyup(passwordEvent)
-	.focus(confirmPasswordEvent).keyup(confirmPasswordEvent);
-
-$confirmPassword.focus(confirmPasswordEvent).keyup(confirmPasswordEvent);
-
+	<form action="#" method="post">
+		<p>
+			<label for="username">Username</label>
+			<input id="username" name="username" type="text">
+		</p>
+		<p>
+			<label for="password">Password</label>
+			<input id="password" name="password" type="password">
+			<span>Enter a password longer than 8 characters</span>
+		</p>
+		<p>
+			<label for="confirm_password">Confirm Password</label>
+			<input id="confirm_password" name="confirm_password" type="password">
+			<span>Please confirm your password</span>
+		</p>
+		<p>
+			<input type="submit" value="SUBMIT" id="submit">
+		</p>
+	</form>
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/app.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>
